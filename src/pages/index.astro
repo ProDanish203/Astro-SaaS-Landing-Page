@@ -1,6 +1,7 @@
 ---
 import DefaultLayout from "../layouts/Default.astro";
 import { Header } from "../components/shared/Header";
+import { Footer } from "../components/shared/Footer";
 import { Hero } from "../components/section/Hero";
 import { Feature } from "../components/section/Feature";
 import { FeaturesGrid } from "../components/section/FeaturesGrid";
@@ -26,4 +27,5 @@ const latestPosts = posts
   <LatestBlogs latestPosts={latestPosts} />
   <Testimonials />
   <CTA />
+  <Footer />
 </DefaultLayout>
