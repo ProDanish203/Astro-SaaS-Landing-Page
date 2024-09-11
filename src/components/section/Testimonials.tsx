@@ -1,25 +1,5 @@
+import { testimnialsData } from "../../lib/data";
 import { cn } from "../../lib/utils";
-
-const testimnialsData = [
-  {
-    text: "This product has completely changed the way I work. The efficiency and ease of use are unparalleled.",
-    name: "Erica Wyatt",
-    title: "Product Manager",
-    avatar: "/assets/images/avatar-erica-wyatt.jpg",
-  },
-  {
-    text: "I can't imagine going back to the old way of doing things. This tool is a game-changer.",
-    name: "John Doe",
-    title: "Software Engineer",
-    avatar: "/assets/images/avatar-kyla-clay.jpg",
-  },
-  {
-    text: "The customer support is fantastic. They helped me get up and running in no time.",
-    name: "Jane Smith",
-    title: "UX Designer",
-    avatar: "/assets/images/avatar-noel-baldwin.jpg",
-  },
-];
 
 export const Testimonials = () => {
   return (

@@ -1,11 +1,5 @@
+import { listItems } from "../../lib/data";
 import { ActionButton } from "../helpers";
-
-const listItems = [
-  "Experience unparalleled performance with our high-speed network",
-  "Highly scalable infrastructure for your applications",
-  "Secure and reliable wallet integration",
-  "24/7 support from our team of experts",
-];
 
 export const FeaturesGrid = () => {
   return (

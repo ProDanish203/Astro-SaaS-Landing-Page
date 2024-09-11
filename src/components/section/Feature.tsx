@@ -1,35 +1,5 @@
+import { cardData } from "../../lib/data";
 import { Card } from "../helpers";
-
-const cardData = [
-  {
-    image: "/assets/images/pill.png",
-    title: "Revoulutionary Blockchain API",
-    description:
-      "Blockforge is a decentralized platform that enables developers to create, deploy, and manage blockchain applications.",
-    color: "fuchsia",
-  },
-  {
-    image: "/assets/images/cuboid.png",
-    title: "Powerful Smart Contracts",
-    description:
-      "Unlock the potential of blockchain with our powerful smart contract technology.",
-    color: "lime",
-  },
-  {
-    image: "/assets/images/cone.png",
-    title: "Secure Wallet Integration",
-    description:
-      "Safely store and manage your digital assets with our secure wallet integration.",
-    color: "cyan",
-  },
-  {
-    image: "/assets/images/icosahedron.png",
-    title: "Scalable Infrastructure",
-    description:
-      "Build and scale your blockchain applications with our highly scalable infrastructure.",
-    color: "violet",
-  },
-];
 
 export const Feature = () => {
   return (
