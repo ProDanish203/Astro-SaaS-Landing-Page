@@ -22,10 +22,10 @@ const latestPosts = posts
 <DefaultLayout>
   <Header />
   <Hero client:load />
-  <Feature />
-  <FeaturesGrid />
-  <LatestBlogs latestPosts={latestPosts} />
-  <Testimonials />
-  <CTA />
+  <Feature client:load />
+  <FeaturesGrid client:load />
+  <LatestBlogs latestPosts={latestPosts} client:load />
+  <Testimonials client:load />
+  <CTA client:load />
   <Footer />
 </DefaultLayout>

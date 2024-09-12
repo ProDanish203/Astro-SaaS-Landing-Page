@@ -1,3 +1,4 @@
+import { motion } from "framer-motion";
 import { testimnialsData } from "../../lib/data";
 import { cn } from "../../lib/utils";
 
@@ -7,7 +8,23 @@ export const Testimonials = () => {
       <div className="container">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-16 md:gap-8 lg:gap-12">
           {testimnialsData.map(({ title, name, text, avatar }, index) => (
-            <blockquote className={cn(index === 2 && "md:hidden lg:block")}>
+            <motion.blockquote
+              key={index}
+              className={cn(index === 2 && "md:hidden lg:block")}
+              initial={{ opacity: 0, y: 24 }}
+              whileInView={{
+                opacity: 1,
+                y: 0,
+              }}
+              viewport={{
+                once: true,
+              }}
+              transition={{
+                delay: index * 0.5,
+                ease: "easeInOut",
+                duration: 1,
+              }}
+            >
               <p className="font-heading text-3xl font-black">
                 &ldquo;{text}&rdquo;
               </p>
@@ -27,7 +44,7 @@ export const Testimonials = () => {
                   </div>
                 </div>
               </cite>
-            </blockquote>
+            </motion.blockquote>
           ))}
         </div>
       </div>
