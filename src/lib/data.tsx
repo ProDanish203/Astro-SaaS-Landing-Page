@@ -95,3 +95,22 @@ export const cardData = [
     color: "violet",
   },
 ];
+
+export const navLinks = [
+  {
+    name: "Home",
+    path: "/",
+  },
+  {
+    name: "Blog",
+    path: "/blog",
+  },
+  {
+    name: "Careers",
+    path: "/careers",
+  },
+  {
+    name: "Contact",
+    path: "/contact",
+  },
+];
