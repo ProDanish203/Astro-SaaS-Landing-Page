@@ -1,4 +1,8 @@
 ---
+import { CTA } from "../components/section/CTA";
+import { Testimonials } from "../components/section/Testimonials";
+import { Footer } from "../components/shared/Footer";
+import { Header } from "../components/shared/Header";
 import "../styles/global.css";
 ---
 
@@ -16,6 +20,10 @@ import "../styles/global.css";
     />
   </head>
   <body>
+    <Header client:load />
     <slot />
+    <Testimonials client:load />
+    <CTA client:load />
+    <Footer />
   </body>
 </html>
