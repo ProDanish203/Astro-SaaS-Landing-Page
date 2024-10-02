@@ -4,9 +4,12 @@ import { ActionButton, Card, Hexagon, Tag } from "../../components/helpers";
 import { cn, getPostColorFromCategory } from "../../lib/utils";
 import { motion } from "framer-motion";
 import { getCollection } from "astro:content";
-
-const posts = (await getCollection("blog")).sort(
-  (a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf()
+import type { CollectionEntry } from "astro:content";
+import InteriorHero from "../../components/section/InteriorHero.astro";
+import InteriorContent from "../../components/section/InteriorContent.astro";
+const posts: CollectionEntry<"blog">[] = (await getCollection("blog")).sort(
+  (a: CollectionEntry<"blog">, b: CollectionEntry<"blog">) =>
+    b.data.pubDate.valueOf() - a.data.pubDate.valueOf()
 );
 
 const latestPost = posts[0];
@@ -14,111 +17,91 @@ const latestPost = posts[0];
 
 <DefaultLayout>
   <!-- Hero Section -->
-  <section class="sm:py-60 py-32 relative overflow-x-clip">
-    <div class="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2">
-      <Hexagon size={800} className="size-[800px]" duration={30} client:load />
-    </div>
-    <div class="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2">
-      <Hexagon
-        size={1200}
-        className="size-[1200px]"
-        duration={50}
-        reverse
-        client:load
-      />
-    </div>
-    <div class="container">
-      <div class="max-w-3xl mx-auto">
-        <p
-          class="uppercase font-extrabold text-center text-zinc-500 tracking-wider"
-        >
-          Latest Post
-        </p>
-        <h1
-          class="font-heading font-black text-5xl md:text-6xl lg:text-7xl text-center mt-4"
-        >
-          {latestPost.data.title}
-        </h1>
-        <p
-          class="text-center md:text-2xl text-xl mt-6 text-zinc-400 max-w-xl mx-auto"
-        >
-          {latestPost.data.description}
-        </p>
-        <div class="flex justify-center mt-10">
-          <a href={`/blog/${latestPost.slug}`}>
-            <ActionButton btnText="Read More" />
-          </a>
-        </div>
+  <InteriorHero>
+    <div class="max-w-3xl mx-auto">
+      <p
+        class="uppercase font-extrabold text-center text-zinc-500 tracking-wider"
+      >
+        Latest Post
+      </p>
+      <h1
+        class="font-heading font-black text-5xl md:text-6xl lg:text-7xl text-center mt-4"
+      >
+        {latestPost.data.title}
+      </h1>
+      <p
+        class="text-center md:text-2xl text-xl mt-6 text-zinc-400 max-w-xl mx-auto"
+      >
+        {latestPost.data.description}
+      </p>
+      <div class="flex justify-center mt-10">
+        <a href={`/blog/${latestPost.slug}`}>
+          <ActionButton btnText="Read More" />
+        </a>
       </div>
     </div>
-  </section>
+  </InteriorHero>
   <!-- Blogs section -->
-  <section class="py-32 bg-zinc-900/30 backdrop-blur-sm">
-    <div class="container">
-      <div class="grid md:grid-cols-2 gap-8">
-        <div class="flex flex-col lg:gap-12 gap-8">
-          {
-            posts.map(
-              ({ data: { category, description, title }, slug }, index) => (
-                <motion.a
-                  client:load
-                  initial={{ opacity: 0, y: 50 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true, amount: 0.5 }}
-                  transition={{ duration: 0.5, ease: "easeIn" }}
-                  href={`/blog/${slug}`}
-                  className={cn(index % 2 != 0 ? "block md:hidden" : "")}
+  <InteriorContent>
+    <div class="grid md:grid-cols-2 gap-8">
+      <div class="flex flex-col lg:gap-12 gap-8">
+        {
+          posts.map(
+            ({ data: { category, description, title }, slug }, index) => (
+              <motion.a
+                client:load
+                initial={{ opacity: 0, y: 50 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, amount: 0.5 }}
+                transition={{ duration: 0.5, ease: "easeIn" }}
+                href={`/blog/${slug}`}
+                className={cn(index % 2 != 0 ? "block md:hidden" : "")}
+              >
+                <Card
+                  btnText="Read More"
+                  color={getPostColorFromCategory(category)}
                 >
-                  <Card
-                    btnText="Read More"
+                  <Tag
+                    tag={category}
                     color={getPostColorFromCategory(category)}
-                  >
-                    <Tag
-                      tag={category}
-                      color={getPostColorFromCategory(category)}
-                    />
-                    <h2 class="font-heading font-black text-3xl mt-4">
-                      {title}
-                    </h2>
-                    <p class="text-lg mt-6 text-zinc-400">{description}</p>
-                  </Card>
-                </motion.a>
-              )
+                  />
+                  <h2 class="font-heading font-black text-3xl mt-4">{title}</h2>
+                  <p class="text-lg mt-6 text-zinc-400">{description}</p>
+                </Card>
+              </motion.a>
             )
-          }
-        </div>
-        <div class="hidden md:flex flex-col gap-8 lg:gap-12 mt-24">
-          {
-            posts.map(
-              ({ data: { category, description, title }, slug }, index) => (
-                <motion.a
-                  client:load
-                  initial={{ opacity: 0, y: 50 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true, amount: 0.5 }}
-                  transition={{ duration: 0.5, ease: "easeIn" }}
-                  href={`/blog/${slug}`}
-                  className={cn(index % 2 === 0 ? "hidden" : "")}
+          )
+        }
+      </div>
+      <div class="hidden md:flex flex-col gap-8 lg:gap-12 mt-24">
+        {
+          posts.map(
+            ({ data: { category, description, title }, slug }, index) => (
+              <motion.a
+                client:load
+                initial={{ opacity: 0, y: 50 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, amount: 0.5 }}
+                transition={{ duration: 0.5, ease: "easeIn" }}
+                href={`/blog/${slug}`}
+                className={cn(index % 2 === 0 ? "hidden" : "")}
+              >
+                <Card
+                  btnText="Read More"
+                  color={getPostColorFromCategory(category)}
                 >
-                  <Card
-                    btnText="Read More"
+                  <Tag
+                    tag={category}
                     color={getPostColorFromCategory(category)}
-                  >
-                    <Tag
-                      tag={category}
-                      color={getPostColorFromCategory(category)}
-                    />
-                    <h2 class="font-heading font-black text-3xl mt-4">
-                      {title}
-                    </h2>
-                    <p class="text-lg mt-6 text-zinc-400">{description}</p>
-                  </Card>
-                </motion.a>
-              )
+                  />
+                  <h2 class="font-heading font-black text-3xl mt-4">{title}</h2>
+                  <p class="text-lg mt-6 text-zinc-400">{description}</p>
+                </Card>
+              </motion.a>
             )
-          }
-        </div>
+          )
+        }
       </div>
     </div>
-  </section>
+  </InteriorContent>
 </DefaultLayout>

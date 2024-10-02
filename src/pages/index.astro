@@ -5,10 +5,10 @@ import { Feature } from "../components/section/Feature";
 import { FeaturesGrid } from "../components/section/FeaturesGrid";
 import { LatestBlogs } from "../components/section/LatestBlogs";
 
-import { getCollection } from "astro:content";
+import { getCollection, type CollectionEntry } from "astro:content";
 const posts = await getCollection("blog");
 const latestPosts = posts
-  .sort((a, b) => {
+  .sort((a: CollectionEntry<"blog">, b: CollectionEntry<"blog">) => {
     if (a.data.pubDate.valueOf() === b.data.pubDate.valueOf()) return 0;
     return a.data.pubDate.valueOf() > b.data.pubDate.valueOf() ? -1 : 1;
   })
