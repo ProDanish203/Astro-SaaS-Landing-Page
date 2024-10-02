@@ -59,7 +59,9 @@ export const CTA = () => {
             workflow with our innovative solutions.
           </p>
           <div className="flex justify-center mt-12">
-            <ActionButton btnText="Get Started" />
+            <a href="/contact">
+              <ActionButton btnText="Get Started" />
+            </a>
           </div>
         </div>
       </div>
