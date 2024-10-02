@@ -1,3 +1,45 @@
 ---
+import { ActionButton } from "../components/helpers";
+import InteriorContent from "../components/section/InteriorContent.astro";
+import InteriorHero from "../components/section/InteriorHero.astro";
 import DefaultLayout from "../layouts/Default.astro";
+import Input from "../components/helpers/Input.astro";
+import Textarea from "../components/helpers/Textarea.astro";
 ---
+
+<DefaultLayout>
+  <InteriorHero>
+    <p
+      class="uppercase text-center font-extrabold text-zinc-500 tracking-wider"
+    >
+      Let&apos;s talk
+    </p>
+    <h1
+      class="font-heading font-black text-center mt-4 lg:text-7xl md:text-6xl text-5xl"
+    >
+      Contact Us
+    </h1>
+    <p
+      class="text-center text-xl md:text-2xl mt-6 max-w-xl mx-auto text-zinc-400"
+    >
+      We are always here to help. If you have any questions or need assistance,
+      please feel free to reach out to us.
+    </p>
+  </InteriorHero>
+  <InteriorContent>
+    <div class="max-w-xl mx-auto">
+      <h2 class="font-heading font-black text-3xl">
+        What can we help you with?
+      </h2>
+      <form class="flex flex-col mt-8">
+        <label for="name">Name</label>
+        <Input id="name" type="text" name="name" className="mt-1" />
+        <label for="email" class="mt-4">Email</label>
+        <Input type="email" name="email" id="email" className="mt-1" />
+        <label for="message" class="mt-4">Message</label>
+        <Textarea name="message" id="message" className="mt-1" />
+        <ActionButton className="mt-4" btnText="Send Message" />
+      </form>
+    </div>
+  </InteriorContent>
+</DefaultLayout>
